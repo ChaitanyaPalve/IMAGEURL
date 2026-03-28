@@ -23,7 +23,7 @@ async function uploadImage() {
 
     try {
         // 🔥 IMPORTANT: replace with your Render backend URL
-        const response = await fetch("https://champ-nl49.onrender.com", {
+        const response = await fetch("https://imageurl-lxn3.onrender.com/upload", {
             method: "POST",
             body: formData
         });
