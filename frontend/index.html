@@ -4,41 +4,67 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Image to URL</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Google Font (premium feel) -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
+
+  <!-- Background texture -->
   <div class="bg-texture"></div>
-  <div class="overlay"></div>
 
   <main class="page">
+
     <section class="card">
-      <div class="top-badge">Luxury Upload Studio</div>
+
+      <div class="badge">Premium Upload Studio</div>
 
       <h1>Image to URL</h1>
-      <p class="subtitle">Transform your image into a clean public URL in seconds.</p>
 
+      <p class="subtitle">
+        Convert your image into a clean public URL instantly with a premium experience.
+      </p>
+
+      <!-- Upload -->
       <div class="upload-section">
-        <label for="imageInput" class="file-btn">Choose Image</label>
+
+        <label for="imageInput" class="file-btn">
+          Choose Image
+        </label>
+
         <input type="file" id="imageInput" accept="image/*" />
 
-        <button class="upload-btn" onclick="uploadImage()">Generate URL</button>
+        <button class="upload-btn" onclick="uploadImage()">
+          Generate URL
+        </button>
+
       </div>
 
+      <!-- Preview -->
       <div id="preview" class="preview"></div>
 
+      <!-- Loader -->
       <div id="loader" class="loader hidden">
         <div class="spinner"></div>
         <p>Processing your image...</p>
       </div>
 
-      <section id="result" class="result hidden">
+      <!-- Result -->
+      <div id="result" class="result hidden">
         <h2>Result</h2>
         <div id="output"></div>
-      </section>
+      </div>
+
     </section>
+
   </main>
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- JS -->
   <script src="script.js"></script>
+
 </body>
 </html>
