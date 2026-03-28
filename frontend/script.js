@@ -10,11 +10,9 @@ async function uploadImage() {
     const preview = document.getElementById("preview");
     const loader = document.getElementById("loader");
     const resultBox = document.getElementById("result");
+    const output = document.getElementById("output");
 
-    // Show preview
-    preview.innerHTML = `<img src="${URL.createObjectURL(file)}">`;
-
-    // Show loader
+    preview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Preview">`;
     loader.classList.remove("hidden");
     resultBox.classList.add("hidden");
 
@@ -22,29 +20,29 @@ async function uploadImage() {
     formData.append("file", file);
 
     try {
-        // 🔥 IMPORTANT: replace with your Render backend URL
         const response = await fetch("https://imageurl-lxn3.onrender.com/upload", {
             method: "POST",
             body: formData
         });
 
         const data = await response.json();
+        console.log("Backend response:", data);
 
         loader.classList.add("hidden");
         resultBox.classList.remove("hidden");
 
-        document.getElementById("output").innerHTML = `
-            <p><strong>Message:</strong> ${data.message}</p>
-            <p><strong>Image URL:</strong> 
-                <a href="${data.url}" target="_blank">${data.url}</a>
-            </p>
+        output.innerHTML = `
+            <p><strong>Message:</strong> ${data.message || "No message returned"}</p>
+            <p><strong>Image URL:</strong> ${
+                data.url
+                    ? `<a href="${data.url}" target="_blank">${data.url}</a>`
+                    : "No image URL returned"
+            }</p>
         `;
-
     } catch (error) {
+        console.error("Upload error:", error);
         loader.classList.add("hidden");
         resultBox.classList.remove("hidden");
-
-        document.getElementById("output").innerText =
-            "❌ Error connecting to backend.";
+        output.innerHTML = `<p>❌ Error connecting to backend.</p>`;
     }
 }
