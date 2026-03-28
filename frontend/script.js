@@ -3,7 +3,7 @@ async function uploadImage() {
     const file = fileInput.files[0];
 
     if (!file) {
-        alert("Please select an image!");
+        alert("Please select an image first.");
         return;
     }
 
@@ -12,7 +12,7 @@ async function uploadImage() {
     const resultBox = document.getElementById("result");
     const output = document.getElementById("output");
 
-    preview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Preview">`;
+    preview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Preview image">`;
     loader.classList.remove("hidden");
     resultBox.classList.add("hidden");
 
@@ -43,6 +43,6 @@ async function uploadImage() {
         console.error("Upload error:", error);
         loader.classList.add("hidden");
         resultBox.classList.remove("hidden");
-        output.innerHTML = `<p>❌ Error connecting to backend.</p>`;
+        output.innerHTML = `<p><strong>Error:</strong> Could not connect to backend.</p>`;
     }
 }
