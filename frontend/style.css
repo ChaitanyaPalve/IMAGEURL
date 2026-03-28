@@ -4,159 +4,211 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #050505;
+  --panel: rgba(10, 10, 12, 0.86);
+  --red: #d5001c;
+  --red-dark: #8a0012;
+  --white: #ffffff;
+  --soft: #cfcfcf;
+  --line: rgba(255, 255, 255, 0.08);
+}
+
 body {
-  font-family: Arial, sans-serif;
   min-height: 100vh;
-  background: linear-gradient(135deg, #050505, #111111, #1a0000);
-  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(circle at top, rgba(213, 0, 28, 0.14), transparent 35%),
+    linear-gradient(135deg, #020202, #0a0a0a 55%, #140005);
   overflow-x: hidden;
   position: relative;
 }
 
-.background-web {
+.bg-web {
   position: fixed;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
-  background-size: 80px 80px;
-  opacity: 0.15;
-  z-index: 0;
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 70px 70px;
+  opacity: 0.18;
+  pointer-events: none;
 }
 
-.container {
+.glow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 180px;
+  filter: blur(60px);
+  opacity: 0.24;
+  pointer-events: none;
+}
+
+.glow-left {
+  left: -60px;
+  background: linear-gradient(to bottom, transparent, red, transparent);
+}
+
+.glow-right {
+  right: -60px;
+  background: linear-gradient(to bottom, transparent, red, transparent);
+}
+
+.page {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 30px 15px;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
   position: relative;
   z-index: 1;
 }
 
 .card {
   width: 100%;
-  max-width: 550px;
-  background: rgba(10, 10, 10, 0.92);
-  border: 2px solid #c00018;
-  border-radius: 22px;
-  padding: 35px 25px;
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.25);
-  text-align: center;
+  max-width: 760px;
+  padding: 34px;
+  border-radius: 28px;
+  background: var(--panel);
+  border: 1px solid rgba(255, 0, 0, 0.42);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.03) inset,
+    0 20px 50px rgba(0,0,0,0.45),
+    0 0 40px rgba(213, 0, 28, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+.badge {
+  width: fit-content;
+  margin: 0 auto 16px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+  color: #ffb8c1;
+  font-size: 0.9rem;
 }
 
 h1 {
-  font-size: 2.3rem;
-  color: #ffffff;
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+  text-align: center;
+  font-size: clamp(2.3rem, 6vw, 4.2rem);
   text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
 }
 
 .subtitle {
-  color: #d7d7d7;
-  margin-bottom: 25px;
-  font-size: 1rem;
+  text-align: center;
+  color: var(--soft);
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+}
+
+.controls {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
 }
 
 input[type="file"] {
   display: none;
 }
 
-.custom-file-upload {
-  display: inline-block;
-  padding: 12px 22px;
-  background: #ffffff;
-  color: #b30017;
-  border-radius: 10px;
-  cursor: pointer;
+.file-btn,
+.upload-btn {
+  width: 100%;
+  border: none;
+  border-radius: 16px;
+  padding: 16px 20px;
+  font-size: 1.1rem;
   font-weight: bold;
-  margin-bottom: 16px;
-  transition: 0.3s ease;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
 }
 
-.custom-file-upload:hover {
-  background: #e8e8e8;
-  transform: translateY(-2px);
+.file-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: var(--red);
+  text-decoration: none;
 }
 
 .upload-btn {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(90deg, #8b0000, #d4001c);
+  background: linear-gradient(90deg, var(--red-dark), var(--red));
   color: white;
-  border: none;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-  margin-bottom: 22px;
+  box-shadow: 0 10px 24px rgba(213, 0, 28, 0.25);
 }
 
+.file-btn:hover,
 .upload-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 18px rgba(255, 0, 0, 0.35);
 }
 
-.preview-box {
-  margin-top: 10px;
-  margin-bottom: 18px;
+.preview {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 22px;
 }
 
-.preview-box img {
-  max-width: 100%;
-  max-height: 280px;
-  border-radius: 14px;
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+.preview img {
+  width: 100%;
+  max-width: 420px;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: 22px;
+  border: 2px solid rgba(255,255,255,0.86);
+  box-shadow: 0 0 30px rgba(255,255,255,0.08);
 }
 
 .loader {
-  margin: 20px 0;
+  text-align: center;
+  margin: 10px 0 24px;
 }
 
 .spinner {
-  width: 48px;
-  height: 48px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  border-top: 5px solid #ff1a1a;
-  border-radius: 50%;
+  width: 54px;
+  height: 54px;
   margin: 0 auto 12px;
+  border-radius: 50%;
+  border: 5px solid rgba(255,255,255,0.18);
+  border-top-color: var(--red);
   animation: spin 1s linear infinite;
 }
 
-.result-box {
-  margin-top: 20px;
-  background: rgba(255, 255, 255, 0.05);
+.result {
+  margin-top: 10px;
+  border-radius: 22px;
+  padding: 24px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
   border: 1px solid rgba(255, 0, 0, 0.35);
-  border-radius: 14px;
-  padding: 18px;
-  text-align: left;
 }
 
-.result-box h2 {
-  color: #ff3b3b;
-  margin-bottom: 12px;
+.result h2 {
   text-align: center;
+  color: #ff4343;
+  font-size: 2rem;
+  margin-bottom: 18px;
 }
 
 #output p {
-  margin-bottom: 10px;
-  line-height: 1.5;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  margin-bottom: 12px;
   word-break: break-word;
 }
 
 #output a {
   color: #ffffff;
-  text-decoration: none;
   font-weight: bold;
+  text-decoration: none;
 }
 
 #output a:hover {
   text-decoration: underline;
-  color: #ff4d4d;
+  color: #ff8b8b;
 }
 
 .hidden {
@@ -164,7 +216,7 @@ input[type="file"] {
 }
 
 @keyframes spin {
-  100% {
+  to {
     transform: rotate(360deg);
   }
 }
