@@ -15,15 +15,20 @@ app.add_middleware(
 )
 
 cloudinary.config(
-    cloud_name=os.getenv("dbqrq1dbl"),
-    api_key=os.getenv("277757863796833"),
-    api_secret=os.getenv("PeTXUk0VO1rOlQv15dVPDzf1MDk"),
+    cloud_name=os.getenv("CLOUD_NAME"),
+    api_key=os.getenv("API_KEY"),
+    api_secret=os.getenv("API_SECRET"),
     secure=True
 )
 
 @app.get("/")
 def home():
-    return {"message": "Hello from Image to URL"}
+    return {
+        "message": "Hello from Image to URL",
+        "cloud_name_exists": bool(os.getenv("dbqrq1dbl")),
+        "api_key_exists": bool(os.getenv("277757863796833")),
+        "api_secret_exists": bool(os.getenv("PeTXUk0VO1rOlQv15dVPDzf1MDk")),
+    }
 
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
