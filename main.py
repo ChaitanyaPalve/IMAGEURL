@@ -2,7 +2,6 @@ from fastapi import FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 import cloudinary
 import cloudinary.uploader
-import os
 
 app = FastAPI(title="Image to URL")
 
@@ -15,20 +14,15 @@ app.add_middleware(
 )
 
 cloudinary.config(
-    cloud_name=os.getenv("CLOUD_NAME"),
-    api_key=os.getenv("API_KEY"),
-    api_secret=os.getenv("API_SECRET"),
+    cloud_name="dbqrq1dbl",
+    api_key="277757863796833",
+    api_secret="PeTXUk0VO1rOlQv15dVPDzf1MDk",
     secure=True
 )
 
 @app.get("/")
 def home():
-    return {
-        "message": "Hello from Image to URL",
-        "cloud_name_exists": bool(os.getenv("dbqrq1dbl")),
-        "api_key_exists": bool(os.getenv("277757863796833")),
-        "api_secret_exists": bool(os.getenv("PeTXUk0VO1rOlQv15dVPDzf1MDk")),
-    }
+    return {"message": "Hello from Image to URL"}
 
 @app.post("/upload")
 async def upload_image(file: UploadFile = File(...)):
