@@ -7,27 +7,28 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="bg-web"></div>
-  <div class="glow glow-left"></div>
-  <div class="glow glow-right"></div>
+  <div class="bg-texture"></div>
+  <div class="overlay"></div>
 
   <main class="page">
     <section class="card">
-      <div class="badge">Spider Web Uploader</div>
-      <h1>Image to URL</h1>
-      <p class="subtitle">Upload any image and get a direct public URL instantly.</p>
+      <div class="top-badge">Luxury Upload Studio</div>
 
-      <div class="controls">
+      <h1>Image to URL</h1>
+      <p class="subtitle">Transform your image into a clean public URL in seconds.</p>
+
+      <div class="upload-section">
         <label for="imageInput" class="file-btn">Choose Image</label>
         <input type="file" id="imageInput" accept="image/*" />
-        <button class="upload-btn" onclick="uploadImage()">Upload Image</button>
+
+        <button class="upload-btn" onclick="uploadImage()">Generate URL</button>
       </div>
 
       <div id="preview" class="preview"></div>
 
       <div id="loader" class="loader hidden">
         <div class="spinner"></div>
-        <p>Sending through the web...</p>
+        <p>Processing your image...</p>
       </div>
 
       <section id="result" class="result hidden">
@@ -39,5 +40,4 @@
 
   <script src="script.js"></script>
 </body>
-</html>
 </html>
