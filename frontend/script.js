@@ -20,7 +20,7 @@ async function uploadImage() {
     formData.append("file", file);
 
     try {
-        const response = await fetch("https://imageurl-lxn3.onrender.com/upload", {
+        const response = await fetch("https://imageurl-ng1u.onrender.com/upload", {
             method: "POST",
             body: formData
         });
